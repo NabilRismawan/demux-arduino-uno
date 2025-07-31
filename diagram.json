@@ -1,0 +1,43 @@
+{
+  "version": 1,
+  "author": "Uri Shaked",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-arduino-uno", "id": "uno", "top": -66.6, "left": -19.8, "attrs": {} },
+    { "type": "chip-demultiplexer", "id": "chip1", "top": -190.98, "left": 129.6, "attrs": {} },
+    {
+      "type": "wokwi-led",
+      "id": "led1",
+      "top": -262.8,
+      "left": -15.4,
+      "attrs": { "color": "red" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led2",
+      "top": -166.8,
+      "left": -15.4,
+      "attrs": { "color": "magenta" }
+    }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "esp:GND.1", "chip1:GND", "black", [ "h0" ] ],
+    [ "esp:5V", "chip1:VCC", "red", [ "h-38.25", "v-57.6" ] ],
+    [ "chip1:IN", "esp:18", "green", [ "h-19.2", "v-134.4", "h326.4", "v-19.2" ] ],
+    [ "chip1:SEL", "esp:19", "orange", [ "h-28.8", "v-163.2", "h345.6", "v144" ] ],
+    [ "led1:A", "chip1:Y0", "red", [ "v0" ] ],
+    [ "led2:A", "chip1:Y1", "magenta", [ "v0", "h105.6", "v-28.8" ] ],
+    [ "led1:C", "esp:GND.1", "black", [ "v38.4", "h-9.2", "v96", "h288", "v-67.2" ] ],
+    [ "led2:C", "esp:GND.1", "black", [ "v28.8", "h269.2", "v-57.6" ] ],
+    [ "chip1:EN", "esp:GND.1", "black", [ "h30.61", "v19.2" ] ],
+    [ "uno:GND.1", "led2:C", "black", [ "v-38.4", "h-95.7" ] ],
+    [ "uno:GND.1", "led1:C", "black", [ "v-38.4", "h-105.3", "v-124.8" ] ],
+    [ "chip1:IN", "uno:13", "orange", [ "h-28.8" ] ],
+    [ "chip1:SEL", "uno:12", "gold", [ "h-19.2" ] ],
+    [ "uno:GND.1", "chip1:GND", "black", [ "v-38.4", "h163.5", "v-57.6" ] ],
+    [ "uno:GND.1", "chip1:EN", "black", [ "v-38.4", "h163.5", "v-76.8" ] ],
+    [ "chip1:VCC", "uno:5V", "red", [ "h30.61", "v307.2", "h-124.8" ] ]
+  ]
+}
